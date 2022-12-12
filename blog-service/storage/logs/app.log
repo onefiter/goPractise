@@ -1,0 +1,5 @@
+2022/12/12 15:40:43 {"callers":["/home/coderdw/workspace/golang/src/github.com/blog-service/main.go: 28 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1670830843828237400}
+2022/12/12 15:44:00 {"callers":["/home/coderdw/workspace/golang/src/github.com/blog-service/main.go: 28 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1670831040341967700}
+2022/12/12 15:48:37 {"callers":["/home/coderdw/workspace/golang/src/github.com/blog-service/main.go: 28 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1670831317314547900}
+2022/12/12 16:58:30 {"callers":["/home/coderdw/workspace/golang/src/github.com/blog-service/main.go: 28 main.init.0"],"level":"info","message":"eddycjy: go-programming-tour-book/blog-service","time":1670835510424603900}
+2022/12/12 16:58:36 {"callers":["/home/coderdw/workspace/golang/src/github.com/blog-service/main.go: 28 main.init.0"],"level":"info","message":"app.BindAndValid errs: State必须是[0 1]中的一个","time":1670835516416858400}
