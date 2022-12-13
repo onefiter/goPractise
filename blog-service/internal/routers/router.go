@@ -1,10 +1,10 @@
 package routers
 
 import (
+	_ "github.com/blog-service/docs"
 	"github.com/blog-service/internal/middleware"
 	v1 "github.com/blog-service/internal/routers/api/v1"
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-programming-tour-book/blog-service/docs"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
