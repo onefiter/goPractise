@@ -2,22 +2,38 @@ package routers
 
 import (
 	"net/http"
+	"time"
 
 	_ "github.com/blog-service/docs"
 	"github.com/blog-service/global"
 	"github.com/blog-service/internal/middleware"
 	"github.com/blog-service/internal/routers/api"
 	v1 "github.com/blog-service/internal/routers/api/v1"
+	"github.com/blog-service/pkg/limiter"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
+var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimiterBucketRule{
+	Key:          "/auth",
+	FillInterval: time.Second,
+	Capacity:     10,
+	Quantum:      10,
+})
+
 func NewRouter() *gin.Engine {
 	r := gin.New()
-	r.Use(gin.Logger())
-	r.Use(gin.Recovery())
+	if global.ServerSetting.RunMode == "debug" {
+		r.Use(gin.Logger())
+		r.Use(gin.Recovery())
+	} else {
+		r.Use(middleware.AccessLog())
+		r.Use(middleware.Recovery())
+	}
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.Use(middleware.ContextTimeout(60 * time.Second))
+	r.Use(middleware.RateLimiter(methodLimiters))
 	r.Use(middleware.Translations())
 
 	article := v1.NewArticle()
