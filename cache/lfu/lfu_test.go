@@ -21,3 +21,24 @@ func TestSet(t *testing.T) {
 	is.Equal(0, cache.Len())
 
 }
+
+func TestOnEvicate(t *testing.T) {
+	is := is.New(t)
+
+	keys := make([]string, 0, 8)
+	onEvicated := func(key string, value interface{}) {
+		keys = append(keys, key)
+
+	}
+
+	cache := lfu.New(32, onEvicated)
+	cache.Set("k1", 1)
+	cache.Set("k2", 2)
+	cache.Set("k3", 3)
+	cache.Set("k4", 4)
+
+	expected := []string{"k1", "k3"}
+
+	is.Equal(expected, keys)
+	is.Equal(2, cache.Len())
+}
