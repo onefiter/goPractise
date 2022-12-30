@@ -21,9 +21,9 @@ func main() {
 	server.ListenAndServe()
 }
 
-func registerRouter(core *framework.Core) {
-	core.Get("foo", FooControllerHandler)
-}
+// func registerRouter(core *framework.Core) {
+// 	core.Get("foo", FooControllerHandler)
+// }
 
 func FooControllerHandler(c *framework.Context) error {
 	finish := make(chan struct{}, 1)
