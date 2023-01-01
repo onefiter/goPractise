@@ -67,8 +67,6 @@ func (c *Core) FindRouteByRequest(request *http.Request) ControllerHandler {
 	// 查找第一层map
 	if methodHandlers, ok := c.router[upperMethod]; ok {
 
-		// 查找第二层map
-
 		return methodHandlers.FindHandler(uri)
 	}
 

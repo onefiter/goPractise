@@ -1,10 +1,15 @@
 package main
 
-import "github.com/goPractise/hade/framework"
+import (
+	"time"
+
+	"github.com/goPractise/hade/framework"
+)
 
 func registerRouter(core *framework.Core) {
 	// static Route And HTTP Method
-	core.Get("/user/login", UserLoginController)
+	// core.Get("/user/login", UserLoginController)
+	core.Get("/user/login", framework.TimeoutHandler(UserLoginController, time.Second*30))
 
 	// 批量通用前缀
 	subjectApi := core.Group("/subject")
