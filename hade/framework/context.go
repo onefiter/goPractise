@@ -16,7 +16,6 @@ type Context struct {
 	request        *http.Request
 	responseWriter http.ResponseWriter
 	ctx            context.Context
-	handler        ControllerHandler
 
 	// 是否超时标记位
 	hasTimeout bool

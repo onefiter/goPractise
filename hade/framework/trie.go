@@ -2,6 +2,7 @@ package framework
 
 import (
 	"errors"
+	"log"
 	"strings"
 )
 
@@ -60,17 +61,20 @@ func (n *node) filterChildNodes(segment string) []*node {
 
 func (n *node) matchNode(uri string) *node {
 	segements := strings.SplitN(uri, "/", 2)
+
 	segement := segements[0]
+	log.Println(segement)
 	if !isWildSegment(segement) {
 		segement = strings.ToUpper(segement)
 	}
 
 	cnodes := n.filterChildNodes(segement)
+
 	if cnodes == nil || len(cnodes) == 0 {
 		return nil
 	}
 
-	if len(segement) == 1 {
+	if len(segements) == 1 {
 		for _, tn := range cnodes {
 			if tn.isLast {
 				return tn
@@ -95,6 +99,7 @@ func (n *node) matchNode(uri string) *node {
 
 func (tree *Tree) AddRouter(uri string, handler ControllerHandler) error {
 	n := tree.root
+	log.Println(handler)
 	if n.matchNode(uri) != nil {
 		return errors.New("route exist: " + uri)
 	}
