@@ -1,18 +1,22 @@
 package main
 
 import (
-	"time"
-
 	"github.com/goPractise/hade/framework"
+	"github.com/goPractise/hade/framework/middleware"
 )
 
 func registerRouter(core *framework.Core) {
 	// static Route And HTTP Method
 	// core.Get("/user/login", UserLoginController)
-	core.Get("/user/login", framework.TimeoutHandler(UserLoginController, time.Second*30))
+
+	core.Use(
+		middleware.Test1(),
+		middleware.Test2(),
+	)
 
 	// 批量通用前缀
 	subjectApi := core.Group("/subject")
+	subjectApi.Use(middleware.Test3())
 	{
 		// 动态路由
 		subjectApi.Delete("/:id", SubjectDelController)
