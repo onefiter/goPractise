@@ -1,33 +1,35 @@
 package main
 
-import "github.com/goPractise/hade/framework"
+import (
+	"fmt"
 
-func SubjectAddController(c *framework.Context) error {
-	c.Json("ok, SubjectAddController")
-	return nil
+	"github.com/goPractise/hade/framework/gin"
+)
+
+func SubjectAddController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectAddController")
+
 }
 
-func SubjectListController(c *framework.Context) error {
-	c.Json("ok, SubjectListController")
-	return nil
+func SubjectListController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectDelController")
+
 }
 
-func SubjectDelController(c *framework.Context) error {
-	c.Json("ok, SubjectDelController")
-	return nil
+func SubjectDelController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectDelController")
 }
 
-func SubjectUpdateController(c *framework.Context) error {
-	c.Json("ok, SubjectUpdateController")
-	return nil
+func SubjectUpdateController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectUpdateController")
+
 }
 
-func SubjectGetController(c *framework.Context) error {
-	c.Json("ok, SubjectGetController")
-	return nil
+func SubjectGetController(c *gin.Context) {
+	subjectId, _ := c.DefaultParamInt("id", 0)
+	c.ISetOkStatus().IJson("ok, SubjectGetController:" + fmt.Sprint(subjectId))
 }
 
-func SubjectNameController(c *framework.Context) error {
-	c.Json("ok, SubjectNameController")
-	return nil
+func SubjectNameController(c *gin.Context) {
+	c.ISetOkStatus().IJson("ok, SubjectNameController")
 }

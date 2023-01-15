@@ -8,18 +8,18 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/goPractise/hade/framework"
-	"github.com/goPractise/hade/framework/middleware"
+	"github.com/goPractise/hade/framework/gin"
 )
 
 func main() {
-	core := framework.NewCore()
+	core := gin.Default()
+	core.Use(gin.Recovery())
+
 	registerRouter(core)
 
-	core.Use(middleware.Recovery())
 	server := &http.Server{
 		Handler: core,
-		Addr:    "localhost:8080",
+		Addr:    ":8080",
 	}
 
 	go func() {
