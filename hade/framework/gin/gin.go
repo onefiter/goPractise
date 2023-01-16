@@ -14,6 +14,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/goPractise/hade/framework"
 	"github.com/goPractise/hade/framework/gin/internal/bytesconv"
 	"github.com/goPractise/hade/framework/gin/render"
 	"golang.org/x/net/http2"
@@ -78,6 +79,8 @@ const (
 // Engine is the framework's instance, it contains the muxer, middleware and configuration settings.
 // Create an instance of Engine, by using New() or Default()
 type Engine struct {
+	// Contanier
+	container framework.Container
 	RouterGroup
 
 	// RedirectTrailingSlash enables automatic redirection if the current route can't be matched but a
@@ -200,6 +203,7 @@ func New() *Engine {
 		secureJSONPrefix:       "while(1);",
 		trustedProxies:         []string{"0.0.0.0/0", "::/0"},
 		trustedCIDRs:           defaultTrustedCIDRs,
+		container: framework.NewHadeContainer(),
 	}
 	engine.RouterGroup.engine = engine
 	engine.pool.New = func() any {
@@ -224,11 +228,12 @@ func (engine *Engine) Handler() http.Handler {
 	h2s := &http2.Server{}
 	return h2c.NewHandler(engine, h2s)
 }
-
+// 创建engine的Context
 func (engine *Engine) allocateContext(maxParams uint16) *Context {
 	v := make(Params, 0, maxParams)
+	// 在分配新的Context的时候 注入了container
 	skippedNodes := make([]skippedNode, 0, engine.maxSections)
-	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes}
+	return &Context{engine: engine, params: &v, skippedNodes: &skippedNodes, container: engine.container}
 }
 
 // Delims sets template left and right delims and returns an Engine instance.

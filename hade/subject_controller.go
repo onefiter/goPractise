@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/goPractise/hade/framework/gin"
+	"github.com/goPractise/hade/provider/demo"
 )
 
 func SubjectAddController(c *gin.Context) {
@@ -12,7 +13,12 @@ func SubjectAddController(c *gin.Context) {
 }
 
 func SubjectListController(c *gin.Context) {
-	c.ISetOkStatus().IJson("ok, SubjectDelController")
+	// 服务实例化
+	demoService := c.MustMake(demo.Key).(demo.Service)
+
+	foo := demoService.GetFoo()
+
+	c.ISetOkStatus().IJson(foo)
 
 }
 

@@ -9,10 +9,13 @@ import (
 	"syscall"
 
 	"github.com/goPractise/hade/framework/gin"
+	"github.com/goPractise/hade/provider/demo"
 )
 
 func main() {
-	core := gin.Default()
+	// 创建engine 结构
+	core := gin.New()
+	core.Bind(&demo.DemoServiceProvider{})
 	core.Use(gin.Recovery())
 
 	registerRouter(core)

@@ -20,6 +20,7 @@ import (
 	"time"
 
 	"github.com/gin-contrib/sse"
+	"github.com/goPractise/hade/framework"
 	"github.com/goPractise/hade/framework/gin/binding"
 	"github.com/goPractise/hade/framework/gin/render"
 )
@@ -49,6 +50,8 @@ const abortIndex int8 = math.MaxInt8 >> 1
 // Context is the most important part of gin. It allows us to pass variables between middleware,
 // manage the flow, validate the JSON of a request and render a JSON response for example.
 type Context struct {
+	// 保存在容器中
+	container framework.Container
 	writermem responseWriter
 	Request   *http.Request
 	Writer    ResponseWriter
