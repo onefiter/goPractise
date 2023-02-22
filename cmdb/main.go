@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"github.com/goPractise/cmdb/cmd"
+)
 
 func main() {
-	fmt.Println("init project!")
+	cmd.Execute()
 }
