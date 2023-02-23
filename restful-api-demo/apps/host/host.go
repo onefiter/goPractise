@@ -20,6 +20,13 @@ type HostSet struct {
 	Total int
 }
 
+func NewHost() *Host {
+	return &Host{
+		Resource: &Resource{},
+		Describe: &Describe{},
+	}
+}
+
 // Host模型的定义
 type Host struct {
 	// 资源公共属性部分
