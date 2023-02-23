@@ -26,3 +26,13 @@ func TestLoadConfigFromEnv(t *testing.T) {
 		should.Equal("unit_test", conf.C().MySQL.Database)
 	}
 }
+
+
+
+func TestGetDB(t *testing.T) {
+	should := assert.New(t)
+	err := conf.LoadConfigFromToml("../etc/demo.toml")
+	if should.NoError(err) {
+		conf.C().MySQL.GetDB()
+	}
+}
