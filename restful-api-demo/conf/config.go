@@ -66,9 +66,9 @@ func NewDefaultMySQL() *MySQL {
 	return &MySQL{
 		Host:        "127.0.0.1",
 		Port:        "3306",
-		UserName:    "demo",
-		Password:    "123456",
-		Database:    "demo",
+		UserName:    "root",
+		Password:    "root123",
+		Database:    "go_course",
 		MaxOpenConn: 200,
 		MaxIdleConn: 100,
 	}
@@ -138,9 +138,6 @@ func (m *MySQL) getDBConn() (*sql.DB, error) {
 	}
 	return db, nil
 }
-
-
-
 
 func NewDefaultLog() *Log {
 	return &Log{
