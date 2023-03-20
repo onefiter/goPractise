@@ -1,6 +1,9 @@
 package main
 
-import "sync"
+
+import (
+	"sync"
+)
 
 func a() {
 	mu := sync.Mutex{}
@@ -9,5 +12,7 @@ func a() {
 }
 
 func main() {
+
+	a()
 
 }
