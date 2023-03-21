@@ -1,5 +1,6 @@
 package main
 
+
 import (
 	"sync"
 )
@@ -11,5 +12,7 @@ func a() {
 }
 
 func main() {
+
 	a()
+
 }
