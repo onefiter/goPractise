@@ -1177,7 +1177,7 @@ func (c *Context) Deadline() (deadline time.Time, ok bool) {
 	return c.Request.Context().Deadline()
 }
 
-// Done returns nil (chan which will wait forever) when c.Request has no Context.
+// Done returns nil (channel which will wait forever) when c.Request has no Context.
 func (c *Context) Done() <-chan struct{} {
 	if !c.engine.ContextWithFallback || c.Request == nil || c.Request.Context() == nil {
 		return nil

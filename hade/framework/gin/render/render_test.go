@@ -43,7 +43,7 @@ func TestRenderJSONPanics(t *testing.T) {
 	w := httptest.NewRecorder()
 	data := make(chan int)
 
-	// json: unsupported type: chan int
+	// json: unsupported type: channel int
 	assert.Panics(t, func() { assert.NoError(t, (JSON{data}).Render(w)) })
 }
 
@@ -65,7 +65,7 @@ func TestRenderIndentedJSONPanics(t *testing.T) {
 	w := httptest.NewRecorder()
 	data := make(chan int)
 
-	// json: unsupported type: chan int
+	// json: unsupported type: channel int
 	err := (IndentedJSON{data}).Render(w)
 	assert.Error(t, err)
 }
@@ -102,7 +102,7 @@ func TestRenderSecureJSONFail(t *testing.T) {
 	w := httptest.NewRecorder()
 	data := make(chan int)
 
-	// json: unsupported type: chan int
+	// json: unsupported type: channel int
 	err := (SecureJSON{"while(1);", data}).Render(w)
 	assert.Error(t, err)
 }
@@ -154,7 +154,7 @@ func TestRenderJsonpJSONFail(t *testing.T) {
 	w := httptest.NewRecorder()
 	data := make(chan int)
 
-	// json: unsupported type: chan int
+	// json: unsupported type: channel int
 	err := (JsonpJSON{"x", data}).Render(w)
 	assert.Error(t, err)
 }
@@ -184,7 +184,7 @@ func TestRenderAsciiJSONFail(t *testing.T) {
 	w := httptest.NewRecorder()
 	data := make(chan int)
 
-	// json: unsupported type: chan int
+	// json: unsupported type: channel int
 	assert.Error(t, (AsciiJSON{data}).Render(w))
 }
 

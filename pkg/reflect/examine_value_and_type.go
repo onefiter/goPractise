@@ -112,7 +112,7 @@ func main() {
 		// 17
 		fmt.Println(v.Int())
 	}
-	// chan chan int
+	// channel channel int
 	fmt.Println(typ.Kind(), typ.String())
 
 	// 其他自定义类型
